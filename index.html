@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elysia's Popipa Space</title>
+    <style>
+        /* 全局样式：设置字体和背景 */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            /* 背景使用了 Kasumi 的红色到粉色的渐变 */
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 主容器卡片 */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(255, 51, 102, 0.2);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* 标题样式 */
+        h1 {
+            color: #ff3366; /* Kasumi Red */
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+        }
+
+        /* 成员应援色条 */
+        .members {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+        }
+        .member-dot {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        /* 五位成员的颜色 */
+        .kasumi { background-color: #ff3366; } /* 香澄红 */
+        .tae { background-color: #0077dd; }    /* 多惠蓝 */
+        .rimi { background-color: #ff88bb; }   /* 里美粉 */
+        .saaya { background-color: #ffaa00; }  /* 沙绫黄 */
+        .arisa { background-color: #aa55dd; }  /* 有咲紫 */
+
+        /* 治愈金句框 */
+        .quote-box {
+            background-color: #fff0f5;
+            border-left: 5px solid #ff3366;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: left;
+            border-radius: 5px;
+            font-style: italic;
+        }
+
+        /* 底部 */
+        .footer {
+            margin-top: 40px;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        /* 闪烁的星星动画 */
+        .star {
+            color: #ffd700;
+            display: inline-block;
+            animation: twinkle 1.5s infinite alternate;
+        }
+        @keyframes twinkle {
+            from { opacity: 0.5; transform: scale(1); }
+            to { opacity: 1; transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1><span class="star">★</span> Poppin'Party <span class="star">★</span></h1>
+        <p class="subtitle">Elysia 的 BanG Dream! 学习小站 @ NUAA</p>
+
+        <p>这里是南航 AI 学生的秘密基地。<br>
+        为了去日本看 Live，正在努力学习 Python 和日语中！</p>
+
+        <div class="members">
+            <div class="member-dot kasumi">Gt.Vo</div>
+            <div class="member-dot tae">Gt.</div>
+            <div class="member-dot rimi">Ba.</div>
+            <div class="member-dot saaya">Dr.</div>
+            <div class="member-dot arisa">Key.</div>
+        </div>
+
+        <div class="quote-box">
+            "Kira Kira Doki Doki!" ✨<br>
+            <span style="font-size: 0.8em; color: #666;">—— 户山香澄</span>
+        </div>
+
+        <div class="footer">
+            Powered by GitHub Pages & Popipa Love
+        </div>
+    </div>
+
+</body>
+</html>
