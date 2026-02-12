@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elysia's Popipa Space</title>
     <style>
-        /* 全局样式：设置字体和背景 */
+        /* --- 基础样式 --- */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            /* 背景使用了 Kasumi 的红色到粉色的渐变 */
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
-            color: #333;
+            font-family: -apple-system, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
             margin: 0;
             padding: 20px;
             display: flex;
@@ -19,39 +17,28 @@
             min-height: 100vh;
         }
 
-        /* 主容器卡片 */
         .card {
             background: rgba(255, 255, 255, 0.95);
-            padding: 40px;
+            padding: 30px;
             border-radius: 25px;
             box-shadow: 0 10px 30px rgba(255, 51, 102, 0.2);
-            max-width: 600px;
+            max-width: 500px;
             width: 100%;
             text-align: center;
         }
 
-        /* 标题样式 */
-        h1 {
-            color: #ff3366; /* Kasumi Red */
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
+        h1 { color: #ff3366; margin-bottom: 5px; }
+        .subtitle { color: #666; font-size: 0.9em; margin-bottom: 20px; }
 
-        .subtitle {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 0.9em;
-        }
-
-        /* 成员应援色条 */
+        /* --- 成员圆点样式 (增加了点击手势) --- */
         .members {
             display: flex;
             justify-content: space-between;
             margin: 30px 0;
         }
         .member-dot {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -60,70 +47,99 @@
             font-weight: bold;
             font-size: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            cursor: pointer; /* 鼠标放上去变小手 */
+            transition: transform 0.2s; /* 动画效果 */
         }
-        /* 五位成员的颜色 */
-        .kasumi { background-color: #ff3366; } /* 香澄红 */
-        .tae { background-color: #0077dd; }    /* 多惠蓝 */
-        .rimi { background-color: #ff88bb; }   /* 里美粉 */
-        .saaya { background-color: #ffaa00; }  /* 沙绫黄 */
-        .arisa { background-color: #aa55dd; }  /* 有咲紫 */
+        .member-dot:active { transform: scale(0.9); } /* 点击时缩小一点点 */
 
-        /* 治愈金句框 */
-        .quote-box {
-            background-color: #fff0f5;
-            border-left: 5px solid #ff3366;
-            padding: 15px;
+        /* 成员颜色 */
+        .kasumi { background-color: #ff3366; }
+        .tae { background-color: #0077dd; }
+        .rimi { background-color: #ff88bb; }
+        .saaya { background-color: #ffaa00; }
+        .arisa { background-color: #aa55dd; }
+
+        /* --- 弹窗 (Modal) 的样式 --- */
+        .modal {
+            display: none; /* 默认隐藏 */
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.7); /* 半透明黑色背景 */
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .modal img {
+            max-width: 90%;
+            max-height: 70%;
+            border-radius: 15px;
+            border: 5px solid white;
+            box-shadow: 0 0 20px rgba(255,255,255,0.5);
+            animation: popIn 0.3s ease-out;
+        }
+        .close-btn {
             margin-top: 20px;
-            text-align: left;
-            border-radius: 5px;
-            font-style: italic;
+            color: white;
+            font-size: 18px;
+            border: 1px solid white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
         }
 
-        /* 底部 */
-        .footer {
-            margin-top: 40px;
-            font-size: 12px;
-            color: #aaa;
-        }
-
-        /* 闪烁的星星动画 */
-        .star {
-            color: #ffd700;
-            display: inline-block;
-            animation: twinkle 1.5s infinite alternate;
-        }
-        @keyframes twinkle {
-            from { opacity: 0.5; transform: scale(1); }
-            to { opacity: 1; transform: scale(1.2); }
+        /* 弹窗出现的动画 */
+        @keyframes popIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <h1><span class="star">★</span> Poppin'Party <span class="star">★</span></h1>
-        <p class="subtitle">Elysia 的 BanG Dream! 学习小站 @ NUAA</p>
-
-        <p>这里是南航 AI 学生的秘密基地。<br>
-        为了去日本看 Live，正在努力学习 Python 和日语中！</p>
+        <h1>★ Poppin'Party ★</h1>
+        <p class="subtitle">点击下方圆点查看成员照片</p>
 
         <div class="members">
-            <div class="member-dot kasumi">Gt.Vo</div>
-            <div class="member-dot tae">Gt.</div>
-            <div class="member-dot rimi">Ba.</div>
-            <div class="member-dot saaya">Dr.</div>
-            <div class="member-dot arisa">Key.</div>
+            <div class="member-dot kasumi" onclick="showImage('IMG_0672.jepg')">Gt.Vo</div>
+            <div class="member-dot tae"    onclick="showImage('IMG_1832.png')">Gt.</div>
+            <div class="member-dot rimi"   onclick="showImage('IMG_1834.png')">Ba.</div>
+            <div class="member-dot saaya"  onclick="showImage('IMG_1084.jpeg')">Dr.</div>
+            <div class="member-dot arisa"  onclick="showImage('033154D2B53E9963C1B4B8D3D8D7062F.png')">Key.</div>
         </div>
 
-        <div class="quote-box">
-            "Kira Kira Doki Doki!" ✨<br>
-            <span style="font-size: 0.8em; color: #666;">—— 户山香澄</span>
-        </div>
-
-        <div class="footer">
-            Powered by GitHub Pages & Popipa Love
+        <div style="font-size: 12px; color: #aaa; margin-top: 30px;">
+            Elysia @ NUAA AI Lab
         </div>
     </div>
+
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <img id="modalImg" src="" alt="Member Image">
+        <div class="close-btn">关闭 / Close</div>
+    </div>
+
+    <script>
+        // 这里是 JavaScript 逻辑
+        
+        // 显示图片的函数
+        function showImage(filename) {
+            var modal = document.getElementById('imageModal');
+            var img = document.getElementById('modalImg');
+            
+            // 设置图片路径
+            img.src = filename; 
+            
+            // 显示弹窗
+            modal.style.display = 'flex';
+        }
+
+        // 关闭弹窗的函数
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+    </script>
 
 </body>
 </html>
