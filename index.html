@@ -28,9 +28,19 @@
         }
 
         h1 { color: #ff3366; margin-bottom: 5px; }
+        
+        /* 欢迎语样式 */
+        .welcome-text {
+            color: #333;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
         .subtitle { color: #666; font-size: 0.9em; margin-bottom: 20px; }
 
-        /* --- 成员圆点样式 (增加了点击手势) --- */
+        /* --- 成员圆点样式 --- */
         .members {
             display: flex;
             justify-content: space-between;
@@ -47,25 +57,73 @@
             font-weight: bold;
             font-size: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            cursor: pointer; /* 鼠标放上去变小手 */
-            transition: transform 0.2s; /* 动画效果 */
+            cursor: pointer;
+            transition: transform 0.2s;
         }
-        .member-dot:active { transform: scale(0.9); } /* 点击时缩小一点点 */
+        .member-dot:active { transform: scale(0.9); }
 
-        /* 成员颜色 */
         .kasumi { background-color: #ff3366; }
         .tae { background-color: #0077dd; }
         .rimi { background-color: #ff88bb; }
         .saaya { background-color: #ffaa00; }
         .arisa { background-color: #aa55dd; }
 
-        /* --- 弹窗 (Modal) 的样式 --- */
+        /* --- Google Calendar 日程卡片样式 --- */
+        .calendar-card {
+            background-color: #f8f9fa;
+            border-left: 5px solid #4285F4; /* Google Blue */
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 30px;
+            text-align: left;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .calendar-title {
+            font-weight: bold;
+            color: #3c4043;
+            font-size: 0.95em;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .calendar-title::before {
+            content: "📅"; 
+            margin-right: 8px;
+        }
+        .event-name {
+            font-size: 1.1em;
+            color: #1a73e8;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+        .event-details {
+            font-size: 0.85em;
+            color: #5f6368;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        
+        /* Add to Calendar 按钮 */
+        .gcal-btn {
+            display: inline-block;
+            background-color: #4285F4;
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        .gcal-btn:hover { background-color: #3367d6; }
+
+        /* --- 弹窗样式 --- */
         .modal {
-            display: none; /* 默认隐藏 */
+            display: none;
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.7); /* 半透明黑色背景 */
+            background-color: rgba(0,0,0,0.7);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -88,8 +146,6 @@
             border-radius: 20px;
             cursor: pointer;
         }
-
-        /* 弹窗出现的动画 */
         @keyframes popIn {
             from { transform: scale(0.5); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
@@ -100,14 +156,28 @@
 
     <div class="card">
         <h1>★ Poppin'Party ★</h1>
+        
+        <p class="welcome-text">欢迎来到 Elysia 的 Popipa 秘密基地</p>
         <p class="subtitle">点击下方圆点查看成员照片</p>
 
         <div class="members">
-            <div class="member-dot kasumi" onclick="showImage('IMG_0672.jepg')">Gt.Vo</div>
+            <div class="member-dot kasumi" onclick="showImage('IMG_0672.jpeg')">Gt.Vo</div>
             <div class="member-dot tae"    onclick="showImage('IMG_1832.png')">Gt.</div>
             <div class="member-dot rimi"   onclick="showImage('IMG_1834.png')">Ba.</div>
             <div class="member-dot saaya"  onclick="showImage('IMG_1084.jpeg')">Dr.</div>
             <div class="member-dot arisa"  onclick="showImage('033154D2B53E9963C1B4B8D3D8D7062F.png')">Key.</div>
+        </div>
+
+        <div class="calendar-card">
+            <div class="calendar-title">Upcoming Live Info</div>
+            <div class="event-name">Poppin'Party×Roselia 合同ライブ<br>「DREAMS GO ON」</div>
+            <div class="event-details">
+                📍 地点: 東京・有明アリーナ (Ariake Arena)<br>
+                ⏰ 时间: 2026年5月3日 (周日) 18:00 开演
+            </div>
+            <a class="gcal-btn" target="_blank" href="https://www.google.com/calendar/render?action=TEMPLATE&text=Poppin%27Party%C3%97Roselia+Joint+Live+%E3%80%8CDREAMS+GO+ON%E3%80%8D&dates=20260503T090000Z/20260503T120000Z&details=%E5%87%BA%E6%BC%94%EF%BC%9APoppin%27Party%C3%97Roselia%0A%E4%BC%9A%E5%A0%B4%EF%BC%9A%E6%9C%89%E6%98%8E%E3%82%A2%E3%83%AA%E3%83%BC%E3%83%8A%0A%E8%AE%B0%E5%BD%95%E8%80%85%EF%BC%9AElysia&location=Ariake+Arena,+Tokyo,+Japan">
+                + Add to Google Calendar
+            </a>
         </div>
 
         <div style="font-size: 12px; color: #aaa; margin-top: 30px;">
@@ -121,21 +191,12 @@
     </div>
 
     <script>
-        // 这里是 JavaScript 逻辑
-        
-        // 显示图片的函数
         function showImage(filename) {
             var modal = document.getElementById('imageModal');
             var img = document.getElementById('modalImg');
-            
-            // 设置图片路径
             img.src = filename; 
-            
-            // 显示弹窗
             modal.style.display = 'flex';
         }
-
-        // 关闭弹窗的函数
         function closeModal() {
             document.getElementById('imageModal').style.display = 'none';
         }
